@@ -7,8 +7,10 @@
     "lint:watch": "npm run lint -- --watch",
     "open:src": "babel-node buildScripts\\srcServer.js",
     "prestart": "babel-node buildScripts\\startMessage.js",
-    "start": "npm-run-all --parallel security-check open:src",
-    "security-check": "nsp check"
+    "start": "npm-run-all --parallel security-check open:src lint:watch test:watch",
+    "security-check": "nsp check",
+    "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
+    "test:watch": "npm run test -- --watch"
   },
   "author": "Cory House",
   "license": "MIT",
